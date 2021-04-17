@@ -21,32 +21,32 @@ public class Main {
 
 //        /Przyklad 1
 
-        InputDataClass inputDataClass1 = new InputDataClass(1, 2, 0.1, 0.9);
-        System.out.println(inputDataClass1);
-        InputDataClass inputDataClass2 = new InputDataClass(0, 2, 1.0, 0.1);
-        System.out.println(inputDataClass2);
-
-        InputDataClass[] learningDataSet = new InputDataClass[]{inputDataClass1, inputDataClass2};
-
-        WeightVector weightVector = new WeightVector(2, 0.1, -0.1, -0.2);
-        System.out.println(weightVector);
-        Neuron neuron = new Neuron(n, K, m, learningRate, learningDataSet, weightVector);
-
-
-        neuron.learningProcedure();
+//        InputDataClass inputDataClass1 = new InputDataClass(1, 2, 0.1, 0.9);
+//        System.out.println(inputDataClass1);
+//        InputDataClass inputDataClass2 = new InputDataClass(0, 2, 1.0, 0.1);
+//        System.out.println(inputDataClass2);
+//
+//        InputDataClass[] learningDataSet = new InputDataClass[]{inputDataClass1, inputDataClass2};
+//
+//        WeightVector weightVector = new WeightVector(2, 0.1, -0.1, -0.2);
+//        System.out.println(weightVector);
+//        Neuron neuron = new Neuron(n, K, m, learningRate, learningDataSet, weightVector);
+//
+//
+//        neuron.learningProcedure();
 
         ///Przyklad 2
 
-//        InputDataClass inputDataClass3 = new InputDataClass(1, 2, 0.9, 0.1);
-//        InputDataClass inputDataClass4 = new InputDataClass(0, 2, 0.1, 1.0);
-//        WeightVector weightVector2 = new WeightVector(2, -0.1, -0.1, -0.2);
-//
-//        System.out.println(weightVector2);
-//        InputDataClass[] learningDataSet2 = new InputDataClass[]{inputDataClass3, inputDataClass4};
-//
-//        Neuron neuron2 = new Neuron(n,K,m, learningRate, learningDataSet2, weightVector2);
-//
-//        neuron2.learningProcedure();
+        InputDataClass inputDataClass3 = new InputDataClass(1, 2, 0.9, 0.1);
+        InputDataClass inputDataClass4 = new InputDataClass(0, 2, 0.1, 1.0);
+        WeightVector weightVector2 = new WeightVector(2, -0.1, -0.1, -0.2);
+
+        System.out.println(weightVector2);
+        InputDataClass[] learningDataSet2 = new InputDataClass[]{inputDataClass3, inputDataClass4};
+
+        Neuron neuron2 = new Neuron(n,K,m, learningRate, learningDataSet2, weightVector2);
+
+        neuron2.learningProcedure();
 
 
         //Przyklad 3
@@ -71,14 +71,14 @@ public class Main {
 //
 //        neuron4.learningProcedure();
 
-//        InputDataClass inputDataClass3 = new InputDataClass(1, 2, 0.9, 0.1);
-//        InputDataClass inputDataClass4 = new InputDataClass(0, 2, 0.1, 1.0);
-//        WeightVector weightVector2 = new WeightVector(2, 0.1, -0.2, -0.1);
+//        InputDataClass inputDataClass3 = new InputDataClass(1, 2, 0.1, 0.9);
+//        InputDataClass inputDataClass4 = new InputDataClass(0, 2, 1.0, 0.1);
+//        WeightVector weightVector2 = new WeightVector(2, 0.1, -0.1, -0.2);
 //
 //        System.out.println(weightVector2);
 //        InputDataClass[] learningDataSet2 = new InputDataClass[]{inputDataClass3, inputDataClass4};
 //
-//        Neuron neuron2 = new Neuron(n,K,m, 0.1, learningDataSet2, weightVector2);
+//        Neuron neuron2 = new Neuron(n,K,m, 0.3, learningDataSet2, weightVector2);
 //
 //        neuron2.learningProcedure();
 

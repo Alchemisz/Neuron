@@ -232,7 +232,7 @@ public class Neuron {
             Main.stringBuffer += "<p>KROK 4(" + t + "): <u>w</u><sup>(" + (t + 1) + ")</sup> = <u>w</u><sup>(" + t + ") </sup> + <span>n</span>( d<sup>(" + k + ")</sup> - y<sup>(" + k + ")</sup>) <u>w</u><sup>(" + k + ")</sup> " +
                     "= <span>" + oldWeightVector.toString() + "</span> + " + learningRate + "(" + inputDataClass.getD() + " - " + y + ")<span>" + inputDataClass.toString() + " = " + result.toString() + "</span> </p>";
         }else{
-            Main.stringBuffer += "<br><p>KROK 4(" + ((lpd == 2) ? (t - 1) : t) + ") : <u>w</u><sup>(" + (t) + ")</sup> = <u>w</u><sup>(" + (t - 1) + ")</sup> = <span>"+oldWeightVector.toString()+"</span></p>";
+            Main.stringBuffer += "<br><p>KROK 4(" + ((lpd == 2) ? (t - 1) : t) + ") : <u>w</u><sup>(" + (t + 1) + ")</sup> = <u>w</u><sup>(" + (t) + ")</sup> = <span>"+oldWeightVector.toString()+"</span></p>";
         }
 
 

@@ -31,7 +31,7 @@ public class WeightVector {
 
     public void roundThisVectorValues(int presicion){
         for(int i = 0; i < this.vector.length; i++){
-            this.vector[i] = RoundDouble.round(this.vector[i], 2);
+            this.vector[i] = RoundDouble.round(this.vector[i], presicion);
         }
     }
 

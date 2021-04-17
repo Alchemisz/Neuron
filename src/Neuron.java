@@ -101,7 +101,7 @@ public class Neuron {
 
 
             if(lpd == K){
-                Main.stringBuffer += "<p><p>KROK 5(" + (t - 1) + "): lpd = " + lpd + " = K (warunek spelniony), STOP.</p>";
+                Main.stringBuffer += "<p><p>KROK 5(" + t + "): lpd = " + lpd + " = K (warunek spelniony), STOP.</p>";
             }
 
 
@@ -115,10 +115,18 @@ public class Neuron {
 
     public static int getRealNeuronAnswer(WeightVector weightVector, InputDataClass inputDataClass, int k, int t){
         double result = RoundDouble.round((weightVector.getVector(0) * inputDataClass.getX(0) + weightVector.getVector(1) * inputDataClass.getX(1) +
-                        weightVector.getVector(2) * inputDataClass.getX(2)), 2);
+                        weightVector.getVector(2) * inputDataClass.getX(2)), 3);
+
+        double firsResult = RoundDouble.round(weightVector.getVector(0) * inputDataClass.getX(0), 3);
+        double secondResult = RoundDouble.round(weightVector.getVector(1) * inputDataClass.getX(1), 3);
+        double theredResult = RoundDouble.round(weightVector.getVector(2) * inputDataClass.getX(2), 3);
+
         int value = ((result >= 0) ? 1 : 0);
         Main.stringBuffer += "<p>KROK 3("+t+"): y<sup>("+k+")</sup> = f<sub>skok</sub>(<u>w</u><sup>("+t+")<sup>T</sup></sup><u>x</u><sup>("+k+")</sup>)" +
-                " =  f<sub>skok</sub>("+weightVector.toString()+ " * <span>"+inputDataClass.toString() +"</span>)" +
+                " =  f<sub>skok</sub>("+weightVector.toString()+ " * <span>"+inputDataClass.toString() +"</span>) = " +
+                "f<sub>skok</sub>(" + ((firsResult >= 0) ? firsResult + "" : "(" + firsResult + ")") + " + " +
+                ((secondResult >= 0) ? secondResult + "" : "(" + secondResult + ")") + " + " +
+                ((theredResult >= 0) ? theredResult + "" : "(" + theredResult + ")") + ")" +
                 " = f<sub>skok</sub>("+result+") = " + value +" <span>" + ((value == (int)inputDataClass.getD()) ? "=" : "!=") + "</span> d<sup>("+k+")</sup> = "+ (int)inputDataClass.getD() +"</p>";
 
 
@@ -156,9 +164,9 @@ public class Neuron {
             Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(2) > 0) ? " NAD " : "POD") +"</span> linia!</p>";
 
             if(lpd == 0) {
-            Main.stringBuffer += "<p>x<sub>10</sub><sup>("+t+")</sup> = " +
+            Main.stringBuffer += "<p>x<sub>20</sub><sup>("+t+")</sup> = " +
                     "- <span>(w<sub>0</sub><sup>("+t+")</sup> / w<sub>2</sub><sup>("+t+")</sup>) = " +
-                    "- ("+v.getVector(0)+"/"+v.getVector(1)+")</span> = " + points[0].getX10() + "</p>";
+                    "- ("+v.getVector(0)+"/"+v.getVector(2)+")</span> = " + points[1].getX20() + "</p>";
             }
 
         }else if(v.getVector(0) != 0 && v.getVector(1) != 0 && v.getVector(2) == 0){
@@ -168,9 +176,9 @@ public class Neuron {
             Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(1) > 0) ? " PO PRAWEJ " : "PO LEWEJ") +"</span> lini!</p>";
 
             if(lpd == 0) {
-            Main.stringBuffer += "<p>x<sub>20</sub><sup>("+t+")</sup> = " +
-                    "- <span>(w<sub>0</sub><sup>("+t+")</sup> / w<sub>2</sub><sup>("+t+")</sup>) = " +
-                    "- ("+v.getVector(0)+"/"+v.getVector(2)+")</span> = " + points[1].getX20() + "</p>";
+            Main.stringBuffer += "<p>x<sub>10</sub><sup>("+t+")</sup> = " +
+                    "- <span>(w<sub>0</sub><sup>("+t+")</sup> / w<sub>1</sub><sup>("+t+")</sup>) = " +
+                    "- ("+v.getVector(0)+"/"+v.getVector(1)+")</span> = " + points[0].getX10() + "</p>";
             }
 
         }else if(v.getVector(0) == 0 && v.getVector(1) != 0 && v.getVector(2) != 0){
@@ -182,14 +190,14 @@ public class Neuron {
 
         }else if(v.getVector(0) == 0 && v.getVector(1) == 0 && v.getVector(2) != 0){
 
-            Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(2) > 0) ? " NAD " : "POD") +"</span> linia!</p>";
+            Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(2) > 0) ? " NAD " : "POD") +"</span> linia! <span>x<sub>10</sub> = c  (DOWOLNE)</span></p>";
 
             points[0] = new Point(1.5,0); //1.5 = c
             points[1] = new Point(0,0);
 
         }else if(v.getVector(0) == 0 && v.getVector(1) != 0 && v.getVector(2) == 0){
 
-            Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(1) > 0) ? " PO PRAWEJ " : "PO LEWEJ") +"</span> lini!</p>";
+            Main.stringBuffer += "<p> '1' sa <span>" + (( v.getVector(1) > 0) ? " PO PRAWEJ " : "PO LEWEJ") +"</span> lini! <span>x<sub>20</sub> = c  (DOWOLNE)</span></p>";
 
             points[0] = new Point(0,0);
             points[1] = new Point(0,1.5); // 1.5 = c
@@ -232,7 +240,7 @@ public class Neuron {
             Main.stringBuffer += "<p>KROK 4(" + t + "): <u>w</u><sup>(" + (t + 1) + ")</sup> = <u>w</u><sup>(" + t + ") </sup> + <span>n</span>( d<sup>(" + k + ")</sup> - y<sup>(" + k + ")</sup>) <u>w</u><sup>(" + k + ")</sup> " +
                     "= <span>" + oldWeightVector.toString() + "</span> + " + learningRate + "(" + inputDataClass.getD() + " - " + y + ")<span>" + inputDataClass.toString() + " = " + result.toString() + "</span> </p>";
         }else{
-            Main.stringBuffer += "<br><p>KROK 4(" + ((lpd == 2) ? (t - 1) : t) + ") : <u>w</u><sup>(" + (t + 1) + ")</sup> = <u>w</u><sup>(" + (t) + ")</sup> = <span>"+oldWeightVector.toString()+"</span></p>";
+            Main.stringBuffer += "<br><p>KROK 4(" + t + ") : <u>w</u><sup>(" + (t + 1) + ")</sup> = <u>w</u><sup>(" + (t) + ")</sup> = <span>"+oldWeightVector.toString()+"</span></p>";
         }
 
 

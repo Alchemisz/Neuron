@@ -67,7 +67,7 @@ public class Neuron {
                 lpd++;
                 Main.stringBuffer += "<p>lpd := lpd + 1 = " + lpd + "</p>";
             } else {
-                Main.stringBuffer += "<p>lpd = 0</p>";
+                Main.stringBuffer += "<p>lpd := 0</p>";
                 lpd = 0;
             }
 
